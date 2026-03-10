@@ -1,3 +1,31 @@
+import requests
+import json
+# link obtained from freshco website flyer section using developer tools
+url_freshco_mar_5_11_2026 = "https://dam.flippenterprise.net/flyerkit/publication/7813184/products?display_type=all&locale=en&access_token=881f0b9feea3693a704952a69b2a037a"
+
+# Function to get the data as list of dictionaries - full information
+def get_data(url):
+  try:
+    response = requests.get(url)
+    response.raise_for_status()
+    data = response.json()  # Automatically parses the JSON response
+  except requests.exceptions.RequestException as e:
+    print(f"Error fetching data: {e}")
+    exit()
+  except json.JSONDecodeError:
+    print("Error decoding JSON")
+    exit()
+  return data
+
+# calling the previous function to get the full data into a variable called data_freshco
+data_freshco = get_data(url_freshco_mar_5_11_2026)
+print(len(data_freshco)) # to know how many products we have
+print(type(data_freshco)) # to check what king of data structure we have (list)
+print(data_freshco[0]) # to explore the one item in the list, user data_freshco[start_index:end_in
+
+
+
+
 def create_website(template_file, html_output):
     """Function that reads the contents of a template html file
     dynamically update its content, and outputs into an index.html file
@@ -77,4 +105,4 @@ def create_website(template_file, html_output):
     with open(html_output, "w") as file:
         file.write(modified_html)
     
-create_website("./template.html", "./simple_daisy.html")
+#create_website("./template.html", "./index.html")
