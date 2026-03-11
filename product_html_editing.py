@@ -32,7 +32,7 @@ results_Freshco = [{'name': item['name'], 'price': item['price_text'], 'pic': it
 
 ###creating a dataframe
 dataframe = pd.DataFrame(results_Freshco)
-print(dataframe.head())
+#print(dataframe.head())
 
 #generating a html table from a dataframe     ---- use pandas library
 html_table = dataframe.to_html()
